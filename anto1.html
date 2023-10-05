@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>First 3 Books About Backend Developers</title>
+  <style>
+  ul {
+    list-style-type:circle;
+  }
+  
+  ul li {
+    
+    
+  background-color: rgb(248, 244, 247);
+
+  }
+    </style>
+</head>
+<body style="background-color: black;">
+  <h1 style="background-color: bisque;">First 3 Books About Backend Developers</h1>
+
+  <ul id="books"></ul>
+
+  <script>
+    // Fetch the first 3 books about backend developers from Google Books API
+    fetch('https://www.googleapis.com/books/v1/volumes?q=backend+developers&maxResults=3')
+      .then(response => response.json())
+      .then(books => {
+        // Display the list of books
+        const bookList = document.querySelector('#books');
+        books.items.forEach(book => {
+          const listItem = document.createElement('li');
+          listItem.textContent = book.volumeInfo.title + ' by ' + book.volumeInfo.authors.join(', ');
+          bookList.appendChild(listItem);
+        });
+      });
+  </script>
+</body>
+</html>
+
